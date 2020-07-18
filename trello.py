@@ -27,7 +27,8 @@ def read():
         task_data = requests.get(base_url.format('lists') + '/' + column['id'] + '/cards', params=auth_params).json()      
         if not task_data:      
             print('\t' + 'Нет задач!')      
-            continue      
+            continue
+        print("Всего задач в колонке '{}': {}".format(column['name'], len(task_data)))      
         for task in task_data:      
             print('\t' + task['name'])    
 
