@@ -1,6 +1,6 @@
 
-#todo       1.) Добавьте рядом с названием колонки цифру, отражающую количество задач в ней.
-#todo       2.) Реализуйте создание колонок.
+#todo  YES  1.) Добавьте рядом с названием колонки цифру, отражающую количество задач в ней.
+#todo  YES  2.) Реализуйте создание колонок.
 #todo       3.) Обработайте совпадающие имена задач*
 
 
@@ -31,6 +31,11 @@ def read():
         print("Всего задач в колонке '{}': {}".format(column['name'], len(task_data)))      
         for task in task_data:      
             print('\t' + task['name'])    
+
+
+def column(name):
+    # Создаем новую колонку с именем name
+    requests.post(base_url.format('boards') + '/' + board_id + '/lists', data={'name': name, **auth_params})
 
 
 def create(name, column_name):      
@@ -77,3 +82,5 @@ if __name__ == "__main__":
         create(sys.argv[2], sys.argv[3])    
     elif sys.argv[1] == 'move':    
         move(sys.argv[2], sys.argv[3])
+    elif sys.argv[1] == 'column':
+        column(sys.argv[2])
